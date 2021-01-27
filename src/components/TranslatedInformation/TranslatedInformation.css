@@ -1,16 +1,16 @@
-.infoContainer{
+.infoContainer {
     display: flex;
     flex-direction: row;
     margin-bottom: 100px;
     width: 470px;
 }
 
-.humanContainer{
+.humanContainer {
     display: flex;
     flex-direction: column;
 }
 
-.circle{
+.circle {
     margin-left: 37px;
     width: 114px;
     height: 114px;
@@ -30,6 +30,7 @@
     background: #6c6c6c;
     position: absolute;
 }
+
 .dialog {
     display: flex;
     flex-direction: row;
@@ -73,7 +74,7 @@
     left: -18px;
 }
 
-.word{
-    margin:5px;
-    height:20px
+.word {
+    margin: 5px;
+    height: 20px
 }

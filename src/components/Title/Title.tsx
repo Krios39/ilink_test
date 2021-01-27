@@ -1,19 +1,19 @@
 import * as React from "react";
 import "./Title.css"
 
-interface Text{
-    text:string,
-    size:string,
-    error?:boolean
+interface Text {
+    text: string,
+    size: string,
+    error?: boolean
 }
 
-export default function Title({text,size,error}:Text){
+export default function Title({text, size, error}: Text) {
 
-    const classname=error?"error":""
+    const classname = error ? "error" : ""
 
-    return(
+    return (
         <div className={classname}>
-            <div className={size} >{text}</div>
+            <div className={size}>{text}</div>
         </div>
 
 

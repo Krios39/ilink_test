@@ -3,18 +3,18 @@ import "./TranslatedInformation.css"
 import {useEffect, useState} from "react";
 
 
-interface Text{
-    text?:string
+interface Text {
+    text?: string
 }
 
-export default function TranslatedInformation({text}:Text){
-    const [words,setWords] = useState([] as string[])
+export default function TranslatedInformation({text}: Text) {
+    const [words, setWords] = useState([] as string[])
 
-    useEffect(()=>{
-        if(text) setWords(text.split(" "))
-    },[text])
+    useEffect(() => {
+        if (text) setWords(text.split(" "))
+    }, [text])
 
-    return(
+    return (
         <div className="infoContainer">
             <div className="humanContainer">
                 <div className="circle"/>
@@ -22,7 +22,7 @@ export default function TranslatedInformation({text}:Text){
             </div>
             <div>
                 <div className="dialog">
-                    {words.map((item,index)=><div key={index} className="word">{item}</div>)}
+                    {words.map((item, index) => <div key={index} className="word">{item}</div>)}
                 </div>
             </div>
         </div>

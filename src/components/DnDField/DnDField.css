@@ -5,9 +5,10 @@
     width: 470px;
     margin: 1rem auto;
 }
+
 .dropzone {
     flex: 1;
-    height:90px;
+    height: 90px;
     margin-bottom: 20px;
 }
 
@@ -26,11 +27,12 @@
     justify-content: center;
 }
 
-.lines{
+.lines {
     position: absolute;
-    margin-top:-8px
+    margin-top: -8px
 }
-.line{
+
+.line {
     height: 45px;
     width: 470px;
     border-top: 1px dashed #4B4B4B;
