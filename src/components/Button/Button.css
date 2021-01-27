@@ -1,0 +1,14 @@
+.button{
+    font-weight: 600;
+    background: linear-gradient(91.2deg, #FFFFFF 0%, #F2F2F2 100%);
+    box-shadow: -2px -4px 8px #FFFFFF, 2px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 88px;
+    outline: none;
+    border: 0;
+    height: 68px;
+    min-width: 470px;
+}
+
+.button:active{
+    box-shadow: inset -2px -4px 12px #FFFFFF, inset 2px 4px 8px rgba(0, 0, 0, 0.2);
+}
