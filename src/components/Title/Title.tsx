@@ -15,7 +15,5 @@ export default function Title({text, size, error}: Text) {
         <div className={classname}>
             <div className={size}>{text}</div>
         </div>
-
-
     )
 }

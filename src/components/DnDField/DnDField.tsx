@@ -10,7 +10,7 @@ import Title from "../Title/Title";
 import "./DnDField.css"
 import Button from "../Button/Button";
 import Text from '../TranslatedInformation/TranslatedInformation'
-import { useSpeechSynthesis } from 'react-speech-kit';
+import {useSpeechSynthesis} from 'react-speech-kit';
 
 interface Word {
     id: number,
@@ -28,18 +28,20 @@ export default function DnNField({english}: Text) {
     const [error, setError] = useState(false)
 
     useEffect(() => {
-        function getWordArr(){
+        function getWordArr() {
             let a: Word[] = []
             let b = arrShuffle(english.split(" "))
-            for (let i = 0; i < english.split(" ").length; i++) {
-                a.push({
-                    id: i,
-                    title: b[i]
+            b.map((word, index) => {
+                return a.push({
+                    id: index,
+                    title: word
                 })
-            }
+            })
+
             return a
         }
-        if (english)  setCloud(getWordArr())
+
+        if (english) setCloud(getWordArr())
     }, [english])
 
     useEffect(() => {
@@ -48,30 +50,36 @@ export default function DnNField({english}: Text) {
 
     useEffect(() => {
         function sortCloud() {
-            const a = cloud.slice().sort((a, b) => a.id - b.id)
+            const sortedCloud = cloud.slice().sort((a, b) => a.id - b.id)
+            let isCloudNotSorted = false
             for (let i = 0; i < cloud.length; i++) {
-                if (cloud[i].id !== a[i].id) {
-                    setCloud(a.sort((a, b) => a.id - b.id))
+                if (cloud[i].id !== sortedCloud[i].id) {
+                    isCloudNotSorted = true
                 }
             }
+            if (isCloudNotSorted) setCloud(sortedCloud)
         }
 
         sortCloud()
     }, [cloud])
 
     const arrShuffle = (arr: string[]) => {
-        let c = arr.slice()
+        let shuffledArr = arr.slice()
         for (let i = 0; i < arr.length; i++) {
-            c = swapNum(c, i, i + i + 1 < c.length ? i + i + 1 : i + i + 1 - c.length)
+            let secondElement: number
+            if (2 * i + 1 < shuffledArr.length) secondElement = 2 * i + 1
+            else secondElement = 2 * i + 1 - shuffledArr.length
+
+            shuffledArr = swapNum(shuffledArr, i, secondElement)
         }
-        return c
+        return shuffledArr
     }
 
     const swapNum = (arr: string[], a: number, b: number) => {
         let ar = arr.slice()
-        let c = ar[b]
+        let tmp = ar[b]
         ar[b] = ar[a]
-        ar[a] = c
+        ar[a] = tmp
         return ar
     }
 
@@ -79,6 +87,7 @@ export default function DnNField({english}: Text) {
         const source = sourceId === "cloud" ? cloud : translate
         const setSource = sourceId === "cloud" ? setCloud : setTranslate
         if (targetId) {
+
             const target = targetId === "cloud" ? cloud : translate
             const setTarget = targetId === "cloud" ? setCloud : setTranslate
             const result = move(
@@ -98,11 +107,11 @@ export default function DnNField({english}: Text) {
 
     const check = () => {
         let a: string[] = []
-        for (let item of translate) {
-            a.push(item.title)
-        }
-        if (a.join(" ") !== english) setError(true)
-        else speak({text:english,voice:window.speechSynthesis.getVoices()[3]})
+        translate.map((word) => a.push(word.title))
+
+        const isSentencesEqual = a.join(" ") === english
+        if (isSentencesEqual) speak({text: english, voice: window.speechSynthesis.getVoices()[3]})
+        else setError(true)
     }
 
     return (
@@ -147,7 +156,6 @@ export default function DnNField({english}: Text) {
                                 </div>
                             </GridItem>
                         ))}
-
                     </GridDropZone>
                 </div>
             </div>
